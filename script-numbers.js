@@ -11,7 +11,7 @@ function onClick(e) {
   }
 
   // setup URL
-  let url = "http://numberapi.com/" + number + "/" + "type" + "?json";
+  let url = "http://numberapi.com/" + number + "/" + type;
   // call API
   fetch(url)
     .then(function(response) {
@@ -21,15 +21,15 @@ function onClick(e) {
           text: "Error calling the Numbers API service: " + response.statusText
         }
       }
-      return response.json();
+      return response.text();
     }).then(function(json) {
-      // update DOM with response
-      updateResult(json.text);
+      // update DOM with respons
+      updateResult(json);
     });
 }
 
 function updateResult(info) {
-  document.getElementById('results').textContent = info;
+  document.getElementById('result').textContent = info;
 }
 
 document.getElementById('woo').addEventListener('click', onClick);
